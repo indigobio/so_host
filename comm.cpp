@@ -1,10 +1,7 @@
 #include <vector>
 #include <unistd.h>
 #include <arpa/inet.h>
-#include "erl_comm.h"
-#include <iostream>
-
-using std::vector;
+#include "comm.h"
 
 // read/write from/to file descriptors directly to avoid buffering
 #define STDIN_FD 0
@@ -12,7 +9,7 @@ using std::vector;
 
 // adapted from http://erlang.org/doc/tutorial/c_port.html
 
-int read_packet(vector<char> &buf)
+int read_packet(std::vector<char> &buf)
 {
   char len_chars[4];
   if (read_exact(len_chars, 4) <= 0)

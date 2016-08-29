@@ -1,25 +1,15 @@
-#include <stdio.h>
-#include <sys/types.h>
-#include <netinet/in.h>
-#include <unistd.h>
 #include <cstring>
-#include <cstdlib>
-#include <dlfcn.h>
 #include <iostream>
 #include <vector>
-#include <functional>
-#include <termios.h>
 #include <map>
-#include "erl_comm.h"
+#include <dlfcn.h>
+#include "comm.h"
 
-using std::map;
 using std::string;
-using std::vector;
-using std::function;
 using std::cerr;
-using std::cin;
-using std::cout;
 using std::endl;
+using std::vector;
+using std::map;
 
 typedef void (*result_consumer)(void *context,
                                 const char *data,
@@ -55,7 +45,6 @@ int main(int argc, char **argv) {
   try {
     while (true) {
       string func_name = read_packet_str(buf);
-      // cerr << "Function: " << func_name << endl;
       string request = read_packet_str(buf);
       pb_api func = lookup_func(func_name);
       func(NULL, request.c_str(), request.size(),
@@ -64,7 +53,6 @@ int main(int argc, char **argv) {
            });
     }
   } catch (ConnectionClosedException& e) {
-    // cerr << "Connection closed." << endl;
     // exit
   }
 }
