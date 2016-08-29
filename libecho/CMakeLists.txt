@@ -1,0 +1,8 @@
+cmake_minimum_required(VERSION 2.8)
+project(libecho)
+
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14")
+
+set(SOURCE_FILES echo.cpp)
+add_library(echo SHARED ${SOURCE_FILES})
+

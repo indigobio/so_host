@@ -66,3 +66,9 @@ A function call looks like:
 The function name is a string suitable to be passed to
 [`dlsym`](http://linux.die.net/man/3/dlsym).
 
+
+Testing
+-------
+
+The repository contains a trivial `libecho` library containing an `echo`
+function that is used by `test.sh` and can be used in client tests.
